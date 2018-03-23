@@ -76,7 +76,6 @@ void SnapshotPreview::init()
     m_progressDialog = 0;
     m_screenSaved = false;
     m_pixmapSet = false;
-    m_clipboard = QApplication::clipboard();
 
     ui = new Ui::SnapshotPreview;
     ui->setupUi(this);
@@ -305,7 +304,7 @@ void SnapshotPreview::slotUpload()
 void SnapshotPreview::slotCopy()
 {
     QPixmap p = getFinalPixmap();
-    m_clipboard->setPixmap(p);
+    QApplication::clipboard()->setPixmap(p);
     m_screenSaved = true;
 }
 
