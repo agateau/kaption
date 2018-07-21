@@ -51,6 +51,7 @@ private Q_SLOTS:
     void slotUploadResult(KJob *job);
     void slotPrintUploadInfo(KJob *job, const QString &plain);
     void slotCancelUpload();
+    void slotCopy();
     void slotSaveAs();
 
 private:

@@ -89,6 +89,7 @@ void SnapshotPreview::init()
     ui->formatTextBtn->setIcon(QIcon::fromTheme("draw-text"));
 
     ui->cancelBtn->setIcon(QIcon::fromTheme("dialog-cancel"));
+    ui->copyBtn->setIcon(QIcon::fromTheme("edit-copy"));
     ui->saveBtn->setIcon(QIcon::fromTheme("document-save-as"));
     ui->uploadBtn->setIcon(QIcon::fromTheme("upload"));
 
@@ -111,6 +112,8 @@ void SnapshotPreview::init()
 
     connect(ui->cancelBtn, SIGNAL(clicked()),
             this, SLOT(close()));
+    connect(ui->copyBtn, SIGNAL(clicked()),
+            this, SLOT(slotCopy()));
     connect(ui->saveBtn, SIGNAL(clicked()),
             this, SLOT(slotSaveAs()));
     connect(ui->uploadBtn, SIGNAL(clicked()),
@@ -296,6 +299,13 @@ void SnapshotPreview::slotUpload()
             }
         }
     }
+}
+
+void SnapshotPreview::slotCopy()
+{
+    QPixmap p = getFinalPixmap();
+    QApplication::clipboard()->setPixmap(p);
+    m_screenSaved = true;
 }
 
 void SnapshotPreview::slotPrintUploadInfo(KJob *job, const QString &plain)
