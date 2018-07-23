@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>722</width>
+    <width>798</width>
     <height>321</height>
    </rect>
   </property>
@@ -35,6 +35,18 @@
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QPushButton" name="arrowBtn">
         <property name="toolTip">
@@ -204,22 +216,24 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0,0,0">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0,0,0,0,0,0,0">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="filenameLabel">
-          <property name="text">
-           <string>Name:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLineEdit" name="filenameLineEdit">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>2</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -231,6 +245,9 @@
           </property>
           <property name="toolTip">
            <string>Image filename</string>
+          </property>
+          <property name="placeholderText">
+           <string>Name</string>
           </property>
           <property name="showClearButton" stdset="0">
            <bool>true</bool>
@@ -252,13 +269,30 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="saveBtn">
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="uploadBtn">
+          <property name="text">
+           <string>Upload</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Maximum</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
+            <width>20</width>
             <height>20</height>
            </size>
           </property>
@@ -272,23 +306,22 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="uploadBtn">
-          <property name="text">
-           <string>Upload</string>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="saveBtn">
+         <widget class="QPushButton" name="menuBtn">
           <property name="text">
-           <string>Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="cancelBtn">
-          <property name="text">
-           <string>Close</string>
+           <string>Menu</string>
           </property>
          </widget>
         </item>
@@ -312,7 +345,16 @@
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -326,14 +368,14 @@
            <property name="flat">
             <bool>false</bool>
            </property>
-           <property name="color">
+           <property name="color" stdset="0">
             <color>
              <red>255</red>
              <green>0</green>
              <blue>0</blue>
             </color>
            </property>
-           <property name="defaultColor">
+           <property name="defaultColor" stdset="0">
             <color>
              <red>255</red>
              <green>0</green>
@@ -426,6 +468,23 @@
    <header>snapshotcanvas.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>arrowBtn</tabstop>
+  <tabstop>boxBtn</tabstop>
+  <tabstop>ellipseBtn</tabstop>
+  <tabstop>textBtn</tabstop>
+  <tabstop>numberedBtn</tabstop>
+  <tabstop>snapshotCanvas</tabstop>
+  <tabstop>colorBtn</tabstop>
+  <tabstop>formatTextBtn</tabstop>
+  <tabstop>widthSlider</tabstop>
+  <tabstop>filenameLineEdit</tabstop>
+  <tabstop>formatCmbBox</tabstop>
+  <tabstop>saveBtn</tabstop>
+  <tabstop>uploadBtn</tabstop>
+  <tabstop>copyBtn</tabstop>
+  <tabstop>menuBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

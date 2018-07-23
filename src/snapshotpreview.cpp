@@ -18,16 +18,20 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QSignalMapper>
+#include <QMenu>
 #include <KMessageBox>
 #include <QClipboard>
 #include <QStyle>
 #include <QSizePolicy>
+#include <KAboutData>
 #include <KNotification>
 #include <KLocalizedString>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
 #include <KIO/StatJob>
 #include <KJobWidgets>
+#include <KStandardAction>
+#include <KHelpMenu>
 #include <QRegExp>
 #include "settings.h"
 #include "scale.h"
@@ -88,10 +92,11 @@ void SnapshotPreview::init()
 
     ui->formatTextBtn->setIcon(QIcon::fromTheme("draw-text"));
 
-    ui->cancelBtn->setIcon(QIcon::fromTheme("dialog-cancel"));
     ui->copyBtn->setIcon(QIcon::fromTheme("edit-copy"));
     ui->saveBtn->setIcon(QIcon::fromTheme("document-save-as"));
     ui->uploadBtn->setIcon(QIcon::fromTheme("upload"));
+    ui->menuBtn->setIcon(QIcon::fromTheme("preferences-others"));
+    ui->menuBtn->setMenu(createMenu());
 
     m_toolkit = new KaptionGraphicsToolkit(ui->propertyToolbar, this);
 
@@ -110,8 +115,6 @@ void SnapshotPreview::init()
 
     ui->snapshotCanvas->setToolkit(m_toolkit);
 
-    connect(ui->cancelBtn, SIGNAL(clicked()),
-            this, SLOT(close()));
     connect(ui->copyBtn, SIGNAL(clicked()),
             this, SLOT(slotCopy()));
     connect(ui->saveBtn, SIGNAL(clicked()),
@@ -530,4 +533,23 @@ bool SnapshotPreview::saveAndContinueAction(SaveAndContinueReason reason)
     }
 
     return continueAction;
+}
+
+QMenu *SnapshotPreview::createMenu()
+{
+    QMenu *menu = new QMenu(this);
+
+    menu->addAction(KStandardAction::open(qApp, SLOT(slotOpenImageFileBrowser()), this));
+    menu->addSeparator();
+    menu->addAction(KStandardAction::preferences(qApp, SLOT(slotConfigKaption()), this));
+    menu->addAction(KStandardAction::keyBindings(qApp, SLOT(slotConfigShortcuts()), this));
+    menu->addSeparator();
+
+    KHelpMenu *helpMenu = new KHelpMenu(menu, KAboutData::applicationData(), false);
+    menu->addMenu(helpMenu->menu());
+    menu->addSeparator();
+
+    menu->addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
+
+    return menu;
 }

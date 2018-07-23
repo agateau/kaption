@@ -28,6 +28,7 @@ class QPushButton;
 class QSignalMapper;
 class KaptionGraphicsItem;
 class KaptionGraphicsToolkit;
+class QMenu;
 
 class SnapshotPreview: public QFrame
 {
@@ -68,6 +69,8 @@ private:
     QByteArray imageFormatFromComboBox() const;
     QString generateScreenFilename() const;
     bool saveAndContinueAction(SaveAndContinueReason reason);
+
+    QMenu* createMenu();
 
     KIO::CopyJob *m_currentJob;
     UploadProgressDialog *m_progressDialog;
