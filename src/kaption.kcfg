@@ -5,17 +5,9 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
     <kcfgfile name="kaptionrc" />
     <group name="general">
-	  <entry name="LastSaveLocationUrl" type="String">
-		<label>Last save location url</label>
-		<hidden>true</hidden>
-	  </entry>
-	  <entry name="DontAskSaveLocation" type="Bool">
-	<label>Should not ask the user where to save the image each time, will be used the default save location</label>
-	<default>false</default>
-      </entry>
-      <entry name="DefaultSaveLocationUrl" type="String">
-	<label>Url to the default image save location</label>
-	<default></default>
+      <entry name="DefaultSaveLocationUrl" type="Path">
+        <label>Url to the default image save location</label>
+        <default>$HOME</default>
       </entry>
     </group>
     <group name="ftp">

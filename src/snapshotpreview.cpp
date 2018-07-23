@@ -150,29 +150,19 @@ static bool destinationExists(const QUrl &url, QWidget *window)
 //TODO: Needs refactoring!
 void SnapshotPreview::slotSaveAs()
 {
-    QUrl locationUrl;
-    if (!Settings::dontAskSaveLocation()) {
-        QString startingUrl =  Settings::lastSaveLocationUrl();
-        if (startingUrl.isEmpty()) startingUrl = QDir::homePath();
-        locationUrl = QFileDialog::getExistingDirectoryUrl(this, QString(), startingUrl);
+    QUrl locationUrl = QUrl::fromUserInput(Settings::defaultSaveLocationUrl());
 
-        // Action aborted by user
-        if (locationUrl.isEmpty()) return;
-    } else {
-        locationUrl.setUrl(Settings::defaultSaveLocationUrl());
-
-        if (!locationUrl.isValid()) {
-            const QString caption = i18n("Invalid location");
-            QString text;
-            if (locationUrl.isEmpty()) {
-                text = i18n("No location has been choosen, check your settings.");
-            } else {
-                text = i18n("Choosen location is invalid: <br>%1<br><i>Reason: <b>%2</b>.</i>",
-                            locationUrl.toString(), locationUrl.errorString());
-            }
-            KMessageBox::error(this, text, caption);
-            return;
+    if (!locationUrl.isValid()) {
+        const QString caption = i18n("Invalid location");
+        QString text;
+        if (locationUrl.isEmpty()) {
+            text = i18n("No location has been choosen, check your settings.");
+        } else {
+            text = i18n("Choosen location is invalid: <br>%1<br><i>Reason: <b>%2</b>.</i>",
+                        locationUrl.toString(), locationUrl.errorString());
         }
+        KMessageBox::error(this, text, caption);
+        return;
     }
 
     QUrl url = locationUrl;
@@ -221,8 +211,6 @@ void SnapshotPreview::slotSaveAs()
         KMessageBox::error(this, text, caption);
     } else {
         m_screenSaved = true;
-        Settings::setLastSaveLocationUrl(locationUrl.url());
-        Settings::self()->save();
 
         KNotification *notification = new KNotification("imagesaved", this);
         notification->setTitle("Kaption");
